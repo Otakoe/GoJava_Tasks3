@@ -1,4 +1,5 @@
 import java.nio.channels.ScatteringByteChannel;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +21,31 @@ public class Task3_1 {
                 ar = new int[sc.nextInt()];
                 for (int i = 0; i < ar.length; i++)
                     ar[i] = Integer.parseInt(sc.next());
-                
+                //поиск наименьшего
+                b=ar[0];
+                for (int i=0;i<ar.length;i++){
+                    a=ar[i];
+                    if (b > a)
+                        b = a;
+                }
+                System.out.println("Наименьшее число = "+b);
+                //поиск наибольшего
+                for(int i=0;i<ar.length;i++){
+                    a=ar[i];
+                    if(b<a)
+                        b=a;
+                }
+                System.out.println("Наибольшее число = "+b);
+                //колво повторений числа 5
+                c=0;
+                for(int i=0;i<ar.length;i++){
+                    if(ar[i]==5)
+                        c++;
+                }
+                System.out.println("Число 5 повторяется "+c+" раз");
+                //вывод отсортированного массива
+                Arrays.sort(ar);
+                System.out.println("Отсортированный массив "+Arrays.toString(ar));
 
             } catch (InputMismatchException e) {
                 e.printStackTrace();
