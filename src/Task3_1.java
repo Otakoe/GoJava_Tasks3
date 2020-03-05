@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Task3_1 {
     public static void main(String[] args)  {
-        int a,b,c;
+        int a,b,c,d;
         Scanner sc = new Scanner(System.in);
         int []ar;
         while(true) {
@@ -47,10 +47,53 @@ public class Task3_1 {
                 Arrays.sort(ar);
                 System.out.println("Отсортированный массив "+Arrays.toString(ar));
 
+                //Доп задание 1
+                /*
+                пример 2:
+массив 1, 1, 1, 4, 6, 6.
+Ответ - 3. Так как число 1 повторяется 3 раза. А число 6 повторяется 2 раза. Поскольку надо вывести максимум, выводим 3.
+
+пример 3:
+массив 2, 3, 3, 5, 5, 6
+Ответ - 3. Так как 3 и 5 повторяются по 2 раза, неважно кого из них подсчитывать, цель - вывести максимум. В этом примере максимум повторений чисел является 2 раза.
+
+                 */
+                d=0;b=0;a=0;
+                for(int i=0;i<ar.length-1;i++)
+                {
+                    c=0;
+                    for(int k=i+1;k<ar.length;k++)
+                    {
+                        if(ar[i]==ar[k]) {
+                            c++;
+                            i++;
+                        }
+                    }
+                    if(c>0){
+                        b+=c;
+                        if (c < a || a == 0)
+                            a = c;
+                    }
+                    if(c>d)
+                        d = c;
+
+
+
+                }
+                System.out.println("Наибольшее кол-во повторений одного числа "+(d+1));
+                System.out.println("Кол-во повторений (дубликатов) чисел "+b);
+                if(a>0)
+                    System.out.println("Наименьшее кол-во поторений "+a);
+                else
+                    System.out.println("Все числа уникальные, повторений нет");
+
+
             } catch (InputMismatchException e) {
                 e.printStackTrace();
                 System.out.println("неверный ввод");
             }
+
+
 
         }
     }
