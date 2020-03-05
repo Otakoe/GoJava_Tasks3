@@ -1,4 +1,4 @@
-import java.nio.channels.ScatteringByteChannel;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,13 +14,55 @@ import java.util.Scanner;
 public class Task3_1 {
     public static void main(String[] args)  {
         int a,b,c,d;
+        int len=0;
         Scanner sc = new Scanner(System.in);
         int []ar;
+        ArrayList <Integer> massiv =new ArrayList <Integer>();
         while(true) {
+
+ // ====  Вариант ввода без указания длины массива через ArrayList от 1: до 2: ======
+            /*
+    // 1:
+            System.out.println("Введите числа. Для завершения ввода введите любое не число");
+            while (sc.hasNextInt())
+            {
+                massiv.add(sc.nextInt());
+            }
+            len = massiv.size();
+            ar=new int[len];
+                    for (int i=0;i<len;i++)
+                        ar[i]= massiv.get(i).intValue();
+
+    // 2:
+            */
+
+ //  ==== Вариант вводе через запятую от 3: до 4:  ===================================
+    // 3:
+            System.out.println("Введите числа через какой-нибудь символ");
+             String st = sc.nextLine();
+             st= st.replaceAll("[^0-9,]", ",");
+             //чтоб наверняка - пройдусь ещё раз если найдутся дубли запятых
+            st= st.replaceAll(",,", ",");
+
+            String []convert = st.split(",");
+            System.out.println(convert.length);
+            ar = new int[convert.length];
+            len=0;
+            for(String s:convert){
+                System.out.println(s);
+                ar[len]=Integer.parseInt(s);
+                len++;
+            }
+
+
+
             try {
-                ar = new int[sc.nextInt()];
-                for (int i = 0; i < ar.length; i++)
-                    ar[i] = Integer.parseInt(sc.next());
+                if(len>0){}
+                else {
+                    ar = new int[sc.nextInt()];
+                    for (int i = 0; i < ar.length; i++)
+                        ar[i] = Integer.parseInt(sc.next());
+                }
                 //поиск наименьшего
                 b=ar[0];
                 for (int i=0;i<ar.length;i++){
@@ -85,12 +127,16 @@ public class Task3_1 {
                 if(a>0)
                     System.out.println("Наименьшее кол-во поторений "+a);
                 else
-                    System.out.println("Все числа уникальные, повторений нет");
+                    System.out.println("Все числа уникальные, повторений нет\n");
 
+                //Доп задание 2
+                /*
+
+                 */
 
             } catch (InputMismatchException e) {
                 e.printStackTrace();
-                System.out.println("неверный ввод");
+                System.out.println("неверный ввод\n");
             }
 
 
